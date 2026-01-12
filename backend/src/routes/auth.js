@@ -47,7 +47,7 @@ router.get('/google/callback', async (req, res) => {
 
         // In production, set httpOnly cookie
         // For now, redirect to frontend with session info
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').split(',')[0].trim();
         const redirectUrl = new URL(frontendUrl);
         redirectUrl.searchParams.set('sessionId', sessionId);
         redirectUrl.searchParams.set('user', JSON.stringify(userInfo));
@@ -55,8 +55,8 @@ router.get('/google/callback', async (req, res) => {
         res.redirect(redirectUrl.toString());
     } catch (error) {
         console.error('OAuth callback error:', error);
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-        res.redirect(`${frontendUrl}?error=auth_failed`);
+        const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').split(',')[0].trim();
+        res.redirect(`${frontendUrl.replace(/\/$/, '')}?error=auth_failed`);
     }
 });
 

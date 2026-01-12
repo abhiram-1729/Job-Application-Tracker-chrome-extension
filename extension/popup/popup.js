@@ -1,5 +1,5 @@
-const API_BASE_URL = 'https://your-backend.onrender.com'; // TODO: Replace with your actual Render URL
-const DASHBOARD_URL = 'https://your-frontend.vercel.app'; // TODO: Replace with your actual Vercel URL
+const API_BASE_URL = 'https://job-application-tracker-chrome-extension.onrender.com'; // TODO: Replace with your actual Render URL
+const DASHBOARD_URL = 'https://job-application-tracker-chrom-git-4647f5-abhiram-1729s-projects.vercel.app'; // TODO: Replace with your actual Vercel URL
 
 // DOM elements
 const loginView = document.getElementById('login-view');

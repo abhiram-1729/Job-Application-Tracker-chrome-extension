@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://your-backend.onrender.com'; // TODO: Replace with your actual Render URL
+const API_BASE_URL = 'https://job-application-tracker-chrome-extension.onrender.com'; // TODO: Replace with your actual Render URL
 
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
