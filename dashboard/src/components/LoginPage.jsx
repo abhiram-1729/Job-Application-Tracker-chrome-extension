@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Briefcase } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { authAPI } from '../services/api';
+import api from '../services/api';
 
 function LoginPage() {
     const { login } = useAuth();
@@ -18,10 +19,7 @@ function LoginPage() {
                 login(sessionId, user);
 
                 // Initialize sheet (silent)
-                fetch('http://localhost:3000/api/jobs/init', {
-                    method: 'POST',
-                    headers: { 'x-session-id': sessionId }
-                }).catch(err => console.error('Silent sheet init error:', err));
+                api.post('/api/jobs/init').catch(err => console.error('Silent sheet init error:', err));
 
                 // Clear URL params and redirect to dashboard home
                 window.history.replaceState({}, document.title, '/');
@@ -40,17 +38,14 @@ function LoginPage() {
 
     const handleOAuthCallback = async (code) => {
         try {
-            const response = await fetch(`http://localhost:3000/auth/google/callback?code=${code}`);
-            const data = await response.json();
+            const response = await api.get(`/auth/google/callback?code=${code}`);
+            const data = response.data;
 
             if (data.sessionId && data.user) {
                 login(data.sessionId, data.user);
 
                 // Initialize sheet (silent)
-                fetch('http://localhost:3000/api/jobs/init', {
-                    method: 'POST',
-                    headers: { 'x-session-id': data.sessionId }
-                }).catch(err => console.error('Silent sheet init error:', err));
+                api.post('/api/jobs/init').catch(err => console.error('Silent sheet init error:', err));
 
                 // Clear URL params and redirect to home
                 window.history.replaceState({}, document.title, '/');
