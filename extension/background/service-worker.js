@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://your-backend.onrender.com'; // TODO: Replace with your actual Render URL
 
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -182,8 +182,8 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     try {
         const url = new URL(urlString);
 
-        // Case 1: Dashboard redirect after login (http://localhost:5173/?sessionId=...&user=...)
-        if (url.origin === 'http://localhost:5173' && url.searchParams.has('sessionId')) {
+        // Case 1: Dashboard redirect after login
+        if (url.searchParams.has('sessionId') && url.searchParams.has('user')) {
             const sessionId = url.searchParams.get('sessionId');
             const userStr = url.searchParams.get('user');
 

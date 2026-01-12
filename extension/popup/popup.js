@@ -1,5 +1,5 @@
-const API_BASE_URL = 'http://localhost:3000';
-const DASHBOARD_URL = 'http://localhost:5173';
+const API_BASE_URL = 'https://your-backend.onrender.com'; // TODO: Replace with your actual Render URL
+const DASHBOARD_URL = 'https://your-frontend.vercel.app'; // TODO: Replace with your actual Vercel URL
 
 // DOM elements
 const loginView = document.getElementById('login-view');
